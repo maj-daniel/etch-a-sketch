@@ -16,3 +16,7 @@ body {
     padding-top: 6.25%;
     border: dashed 1px hsl(0, 0%, 80%);
 }
+
+.hovered {
+    background-color: hsl(300, 90%, 70%);
+}
