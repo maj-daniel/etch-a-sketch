@@ -1,16 +1,9 @@
 const container = document.querySelector(".container");
-console.log(container);
-
-const pixels = document.querySelectorAll(".pixel");
-console.log(pixels);
-
 const gridBtn = document.querySelector("#grid-btn");
+let pixels;
 
 gridBtn.addEventListener("click", createNewGrid);
-
-pixels.forEach(pixel =>{
-    pixel.addEventListener('mouseover', changeDivColor);//check is mouse hovered every pixel in the container
-});
+window.addEventListener("resize", sizeCanvas);
 
 function changeDivColor(e) { //add class that has diferent color
     e.target.classList.add("hovered");
@@ -31,4 +24,17 @@ function createNewGrid() {
             container.appendChild(block);
         }
     }
+    pixels = document.querySelectorAll(".pixel");
+    sizeCanvas();
+    pixels.forEach(pixel =>{
+        pixel.addEventListener('mouseover', changeDivColor);//check is mouse hovered every pixel in the container
+    });
+}
+
+function sizeCanvas() {
+    container.style.width = `${Math.floor(document.documentElement.clientHeight * 0.85)}px`; // make the size of the window a round number
+    pixels.forEach(pixel =>{//size pixels elements
+        pixel.style.height = `${(container.offsetWidth / Math.sqrt(pixels.length))}px`;
+        pixel.style.width = `${(container.offsetWidth / Math.sqrt(pixels.length))}px`;
+    });
 }
