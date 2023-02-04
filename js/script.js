@@ -13,7 +13,7 @@ function changeDivColor(e) { //add class that has different color
     e.target.style.backgroundColor = "#060606";
 }
 
-function createNewGrid() {
+function createNewGrid() {//create a custom "canvas" made of div, arranged in a grid, sort of
     const elementsToRemove = document.querySelectorAll(".pixel");
     elementsToRemove.forEach(element => element.remove());//Clean previous grid
     let lineAndColumnNumber;
@@ -30,15 +30,15 @@ function createNewGrid() {
     }
 
     pixels = document.querySelectorAll(".pixel");
-    sizeCanvas(); // make the elements inside the container the correct size when you create a new grid
+    sizeCanvas(); // size the grid in the moment it's created
 
 
     pixels.forEach(pixel =>{
-        pixel.addEventListener("mouseover", changeDivColor);//check is mouse hovered every pixel in the container
+        pixel.addEventListener("mouseover", changeDivColor);
     });
 }
 
-function sizeCanvas() {
+function sizeCanvas() {//change individual div sizes in order to make a "canvas"
     container.style.width = `${Math.floor(document.documentElement.clientHeight * 0.85)}px`; // make the size of the window a round number, so the elements align correctly
     pixels.forEach(pixel =>{//size pixels elements
         pixel.style.height = `${(container.offsetWidth / Math.sqrt(pixels.length))}px`;
