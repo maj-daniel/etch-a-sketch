@@ -16,6 +16,13 @@ body {
     border: dashed 1px hsl(0, 0%, 80%);
 }
 
-.hovered {
-    background-color: hsl(300, 90%, 70%);
+.buttons {
+    display: flex;
+    width: 60%;
+    max-width: 807px;
+    margin: 0 auto;
+}
+
+#grid-btn {
+    margin: 0 auto 0 0;
 }
