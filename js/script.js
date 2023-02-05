@@ -36,6 +36,9 @@ function createNewGrid() {//create a custom "canvas" made of div, arranged in a 
     pixels.forEach(pixel =>{
         pixel.addEventListener("mouseover", changeDivColor);
     });
+    pixels.forEach(pixel =>{
+        pixel.style.backgroundColor = "rgb(250,250,250)";
+    })
 }
 
 function sizeCanvas() {//change individual div sizes in order to make a "canvas"
@@ -46,27 +49,62 @@ function sizeCanvas() {//change individual div sizes in order to make a "canvas"
     });
 }
 
-function randomColor(e) {
+function getRandomColor(e) {
     e.target.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16); //generate a random hex color value
+}
+
+function removelightness(e) {
+    //extract color of div
+    let color = getComputedStyle(e.target, null).getPropertyValue("background-color");
+    let newColor = "#FFFFFF";
+    color = color.replace(/ /g, "").slice(4,-1).split(",").map(value => parseInt(value));
+    //subtract an amount of each color (r,g,b)
+    for(let i = 0; i < 3; i++){
+        color[i] -= 25;
+    }
+
+    color.forEach(value =>{
+            //if value is <= 0, exit function
+        if (value <= 0) return;
+    });
+
+    //else make a string "rgb(r,g,b)" with the new values
+    for (let i = 0; i < 3; i++){
+        if(i === 0){
+            newColor = "rgb(";
+        }
+        if(i === 2){
+            newColor += `${color[i]})`;
+            break;
+        }
+        newColor += `${color[i]},`;
+    }
+
+    //assign new color to div
+    e.target.style.backgroundColor = newColor;
 }
 
 function changeGridMode(e) { //change the way colors behave in the grid
     switch (e.target.id){
         case "single":
             pixels.forEach(pixel =>{
-                pixel.removeEventListener("mouseover", randomColor);
-            });
-            pixels.forEach(pixel =>{
+                pixel.removeEventListener("mouseover", getRandomColor);
+                pixel.removeEventListener("mouseover", removelightness);
                 pixel.addEventListener("mouseover", changeDivColor);
             });
             break;
         case "colorfull":
             pixels.forEach(pixel =>{
+                pixel.removeEventListener("mouseover", removelightness);
                 pixel.removeEventListener("mouseover", changeDivColor);
-            });
-            pixels.forEach(pixel =>{
-                pixel.addEventListener("mouseover", randomColor);
+                pixel.addEventListener("mouseover", getRandomColor);
             });
             break;
+        case "modern":
+            pixels.forEach(pixel => {
+                pixel.removeEventListener("mouseover", getRandomColor);
+                pixel.removeEventListener("mouseover", changeDivColor);
+                pixel.addEventListener("mouseover", removelightness);
+            })
     }
 }
