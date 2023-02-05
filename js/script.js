@@ -30,7 +30,7 @@ function createNewGrid() {//create a custom "canvas" made of div, arranged in a 
     }
 
     pixels = document.querySelectorAll(".pixel");
-    sizeCanvas(); // size the grid in the moment it's created
+    sizeCanvas(70); // size the grid in the moment it's created
 
 
     pixels.forEach(pixel =>{
@@ -41,8 +41,8 @@ function createNewGrid() {//create a custom "canvas" made of div, arranged in a 
     })
 }
 
-function sizeCanvas() {//change individual div sizes in order to make a "canvas"
-    container.style.width = `${Math.floor(document.documentElement.clientHeight * 0.85)}px`; // make the size of the window a round number, so the elements align correctly
+function sizeCanvas(gridSize) {//change individual div sizes in order to make a "canvas", enter gridSize as a percentage of the screen
+    container.style.width = `${Math.floor(document.documentElement.clientHeight * gridSize / 100)}px`; // make the size of the window a round number, so the elements align correctly
     pixels.forEach(pixel =>{//size pixels elements
         pixel.style.height = `${(container.offsetWidth / Math.sqrt(pixels.length))}px`;
         pixel.style.width = `${(container.offsetWidth / Math.sqrt(pixels.length))}px`;

@@ -1,6 +1,7 @@
 body {
     background-color: hsl(180, 90%, 90%);
     text-align: center;
+    font-family: sans-serif;
 }
 
 .container {
