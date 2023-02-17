@@ -25,5 +25,34 @@ body {
 }
 
 #grid-btn {
-    margin: 0 auto 0 0;
+    margin: 10px auto 0 0;
+}
+
+.background {
+    background-color: hsl(0, 0%, 99%);
+    margin-top: 30px;
+    border: solid hsl(0, 50%, 40%) 10px;
+    border-radius: 10px;
+}
+
+#etch {
+    background-color: hsl(00, 60%, 55%);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 5%;
+}
+
+.btn {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    margin: 10px 5px;
+    border: 0;
+    font-weight: bold;
+    font-size: 16px;
 }

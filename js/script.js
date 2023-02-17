@@ -1,7 +1,11 @@
 const container = document.querySelector(".container");
 const gridBtn = document.querySelector("#grid-btn");
 const colorBtns = document.querySelectorAll(".color-btn");
-let pixels;
+const containerBG = document.querySelector(".background");
+
+let pixels = null;
+
+sizeCanvas(70);
 
 gridBtn.addEventListener("click", createNewGrid);
 window.addEventListener("resize", sizeCanvas);
@@ -43,6 +47,10 @@ function createNewGrid() {//create a custom "canvas" made of div, arranged in a 
 
 function sizeCanvas(gridSize) {//change individual div sizes in order to make a "canvas", enter gridSize as a percentage of the screen
     container.style.width = `${Math.floor(document.documentElement.clientHeight * gridSize / 100)}px`; // make the size of the window a round number, so the elements align correctly
+    containerBG.style.width = `${(container.offsetWidth)}px`;
+    containerBG.style.height = `${(container.offsetWidth)}px`;
+
+    if(!pixels) return;
     pixels.forEach(pixel =>{//size pixels elements
         pixel.style.height = `${(container.offsetWidth / Math.sqrt(pixels.length))}px`;
         pixel.style.width = `${(container.offsetWidth / Math.sqrt(pixels.length))}px`;
