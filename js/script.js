@@ -22,8 +22,8 @@ function createNewGrid() {//create a custom "canvas" made of div, arranged in a 
     elementsToRemove.forEach(element => element.remove());//Clean previous grid
     let lineAndColumnNumber;
     do{
-        lineAndColumnNumber = parseInt(prompt("Enter a grid size (2 - 100)"));
-    } while (lineAndColumnNumber > 100 || lineAndColumnNumber < 2 || !lineAndColumnNumber);
+        lineAndColumnNumber = parseInt(prompt("Enter a grid size (2 - 64)"));
+    } while (lineAndColumnNumber > 64 || lineAndColumnNumber < 2 || !lineAndColumnNumber);
 
     for(let i = 0; i < lineAndColumnNumber; i++){//construct the grid with square divs
         for(let j = 0; j < lineAndColumnNumber; j++){
